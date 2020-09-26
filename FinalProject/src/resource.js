@@ -23,7 +23,16 @@
  ****************************************************************************/
 
 var res = {
+    pixel_font: {
+        type: "font",
+        name: "Pixel",
+        srcs: ["res/fonts/slkscr.ttf"]
+    },
+    
     HelloWorld_png : "res/HelloWorld.png",
+    JStar_png: "res/TheStarOfJacob.png",
+    Exit_png: "res/EXIT.png",
+    Retry_png: "res/RETRY.png"
 };
 
 var g_resources = [];

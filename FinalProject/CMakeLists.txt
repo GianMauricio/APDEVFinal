@@ -26,7 +26,7 @@
 
 cmake_minimum_required(VERSION 3.6)
 
-set(APP_NAME FinalProject)
+set(APP_NAME SampleGame)
 
 project(${APP_NAME})
 
