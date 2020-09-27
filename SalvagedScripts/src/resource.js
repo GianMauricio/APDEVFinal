@@ -28,11 +28,10 @@ var res = {
         name: "Pixel",
         srcs: ["res/fonts/slkscr.ttf"]
     },
-    
-    HelloWorld_png : "res/HelloWorld.png",
-    JStar_png: "res/TheStarOfJacob.png",
-    Exit_png: "res/EXIT.png",
-    Retry_png: "res/RETRY.png"
+    Button9Slice_png: "res/Button9Slice.png",
+    Button9SliceSelected_png: "res/Button9SliceSelected.png",
+    Button9SliceLogo_png: "res/Button9SliceLogo.png"
+
 };
 
 var g_resources = [];

@@ -1,14 +1,27 @@
-class FitToWindow extends ResizeListener{
-    constructor(){
-        super();
-        this.setName("FitToWindow");
-    }
+class FitToWindow extends cc.Component{
     onEnter(){
-        cc.assert(this.getOwner() instanceof ccui.Layout, "Componnent compatible only with ccui.Layout")
         super.onEnter();
+        cc.assert(this.getOwner() instanceof ccui.Layout, "Componnent compatible only with ccui.Layout")
+        
+        this.listener = cc.EventListener.create({
+            event: cc.EventListener.CUSTOM,
+            eventName: 'canvas-resize',
+            callback: this.onResize.bind(this)
+        });
+        
+        cc.eventManager.addListener(this.listener, this.getOwner());
+        this.isResizeContent = false;
     }
 
     onResize(){
-        this.getOwner().setContentSize(cc.winSize);
+        this.isResizeContent = true;
     }
+    
+    update(dt){
+        if(this.isResizeContent){
+            this.getOwner().setContentSize(cc.winSize);
+            this.isResizeContent = false;
+        }
+    }
+
 }

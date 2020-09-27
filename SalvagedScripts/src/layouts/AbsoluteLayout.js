@@ -15,7 +15,7 @@ class AbsoluteLayout extends ccui.Layout{
     createText(message){
         let text = new ccui.Text(message, "Pixel", 32);
         text.setPositionType(ccui.Widget.POSITION_PERCENT)
-        text.setPositionPercent(cc.p(Math.random(),Math.random()));
+        text.setPositionPercent(cc.p(Math.random(),Math.random()) );
         this.addChild(text);
 
         this.scheduleUpdate();

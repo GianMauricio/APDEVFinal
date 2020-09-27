@@ -2,6 +2,7 @@ class TitleScene extends cc.Scene{
     constructor(){
         super();
     }
+    
     onEnter(){
         super.onEnter();
         
