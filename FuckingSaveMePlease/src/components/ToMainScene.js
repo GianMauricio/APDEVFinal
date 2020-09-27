@@ -14,7 +14,7 @@ class ToMainScene extends cc.Component{
     onKeyPressed(key, event){
        console.log(key);
        console.log(event); 
-       cc.director.runScene(new MainScene());
+       cc.director.runScene(new GameScene());
     }
 
 }
