@@ -1,18 +1,26 @@
-class TitleLayer extends cc.Layer{
+class TitleLayer extends cc.LayerColor{
     constructor(){
         super();
-
-        let size = cc.winSize;
-        let titleLabel = new cc.LabelTTF("PONG", 'Pixel', 64);
-        titleLabel.x = size.width / 2;
-        titleLabel.y = size.height / 2;
-        this.addChild(titleLabel);
-
-        let startLabel = new cc.LabelTTF("press any key to start", 'Pixel', 32);
-        startLabel.x = size.width / 2;
-        startLabel.y = size.height / 2 - 200;
-        this.addChild(startLabel);
-        let toMainScene = new ToMainScene();
-        this.addComponent(toMainScene);
+        
+        this.Tiles = new Array(8);
+        
+        for(var i = 0; i < this.Tiles.length; i++){
+            Tiles[i] = new Array(8);
+        }
+        
+        for(var i = 0; i < this.Tiles.length; i++){
+            for(var j = 0; j < this.Tiles.length; j++){
+                Tiles[i][j] = i + j;
+            }
+        }
+    }
+    
+    displayTiles(){
+        for(var i = 0; i < this.Tiles.length; i++){
+            for(var j = 0; j < this.Tiles.length; j++){
+                console.log(Tiles[i][j]);
+            }
+            console.log("\n");
+        }
     }
 }

@@ -45,7 +45,7 @@ class LandscapeLayout extends ccui.RelativeBox{
         button.setTitleText("Pause")
 
         let layoutParameter = new ccui.RelativeLayoutParameter();
-        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_TOP_RIGHT);
+        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_BOTTOM_CENTER_HORIZONTAL);
         layoutParameter.setMargin(0,0,0,20);
         button.setLayoutParameter(layoutParameter);
 

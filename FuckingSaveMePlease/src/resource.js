@@ -32,7 +32,9 @@ var res = {
     HelloWorld_png : "res/HelloWorld.png",
     JStar_png: "res/TheStarOfJacob.png",
     Exit_png: "res/EXIT.png",
-    Retry_png: "res/RETRY.png"
+    Retry_png: "res/RETRY.png",
+    Start_png: "res/START.png",
+    StartClick_png: "res/STARTCLICKED.png"
 };
 
 var g_resources = [];

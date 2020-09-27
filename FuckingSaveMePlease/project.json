@@ -18,6 +18,7 @@
     "jsList": [
         "src/components/ResizeListener.js",
         "src/components/BallMovement.js",
+        "src/components/Countdown.js",
         "src/components/EnableOnLandscape.js",
         "src/components/EnableOnPortrait.js",
         "src/components/FitToParent.js",
@@ -25,21 +26,25 @@
         "src/components/GameLayerResizer.js",
         "src/components/PaddleMovement.js",
         "src/components/ToMainScene.js",
+        "src/layers/GridLayer.js",
         "src/layers/PongLayer.js",
         "src/layers/TitleLayer.js",
         "src/layouts/AbsoluteLayout.js",
+        "src/layouts/GameLayout.js",
+        "src/layouts/Grid.js",
         "src/layouts/HorizontalLayout.js",
         "src/layouts/LandscapeLayout.js",
-        "src/layouts/NineSliceLayout.js",
         "src/layouts/PercentPositioningLayout.js",
         "src/layouts/PercentSizingLayout.js",
-        "src/layouts/PortraitLayout.js",
         "src/layouts/RelativeLayout.js",
+        "src/layouts/TitleLayout.js",
         "src/layouts/VerticalLayout.js",
         "src/resource.js",
+        "src/scenes/GameScene.js",
         "src/scenes/MainScene.js",
         "src/scenes/TitleScene.js",
         "src/sprites/Ball.js",
-        "src/sprites/Paddle.js"
+        "src/sprites/Paddle.js",
+        "src/sprites/Tile.js"
     ]
 }
