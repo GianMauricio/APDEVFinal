@@ -22,7 +22,6 @@ class RelativeLayout extends ccui.RelativeBox{
             let alignStr = alignArr[i];
             this.createText(alignStr.replace("PARENT_", ""), ccui.RelativeLayoutParameter[alignStr]);
         }
-        
         this.scheduleUpdate();
         this.addComponent(new FitToWindow());
     }
