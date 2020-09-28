@@ -21,6 +21,9 @@ class Grid extends ccui.Layout{
     onEnter(){
         super.onEnter();
         this.setContentSize(800, 800);
+        
+        this.ClickListener = new Clickable();
+        this.addComponent(this.ClickListener);
     }
     
     getTile(LocX, LocY){
