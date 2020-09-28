@@ -27,7 +27,9 @@ class Grid extends ccui.Layout{
         //Check if query is within any "tile" (measures square region despite tiles being circular)
         for(var i = 0; i < this.Tiles.length; i++){
             for(var j = 0; j < this.Tiles.length; j++){
-                checkBounds(LocX, LocY, Tiles[i][j]);
+                if(checkBounds(LocX, LocY, Tiles[i][j])){
+                    Tiles[i][j].setColor(0);
+                }
             }
         }
     }
