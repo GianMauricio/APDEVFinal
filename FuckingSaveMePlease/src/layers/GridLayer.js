@@ -38,6 +38,7 @@ class GridLayer extends cc.LayerColor{
         }
     }
     
+<<<<<<< HEAD
     onMouseDown(event){
         if(event == cc.Node.EventType.MOUSE_DOWN){
 
@@ -47,5 +48,7 @@ class GridLayer extends cc.LayerColor{
 
     }
     
+=======
+>>>>>>> 1005b2d431b1540b250ab34ebb2002f0ec48ade9
     updateBounds(){}
 }
