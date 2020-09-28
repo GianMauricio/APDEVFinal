@@ -13,6 +13,7 @@ class PaddleMovement extends cc.Component{
             onKeyReleased: this.onKeyReleased
             //onKeyReleased
         })
+      
         cc.eventManager.addListener(this.listener, this.getOwner());
     }
 

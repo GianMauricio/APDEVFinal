@@ -38,10 +38,5 @@ class GridLayer extends cc.LayerColor{
         }
     }
     
-    onMouseDown(event){
-        console.log(event.x);
-        console.log(event.y);
-    }
-    
     updateBounds(){}
 }

@@ -13,8 +13,6 @@ class Tile extends cc.DrawNode{
         
         this.colorNum = color;
         
-        this.scheduleUpdate();
-        
         this.rad = radius;
         this.positionX = PosX;
         this.positionY = PosY;
