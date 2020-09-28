@@ -22,4 +22,25 @@ class Grid extends ccui.Layout{
         super.onEnter();
         this.setContentSize(800, 800);
     }
+    
+    getTile(LocX, LocY){
+        //Check if query is within any "tile" (measures square region despite tiles being circular)
+        for(var i = 0; i < this.Tiles.length; i++){
+            for(var j = 0; j < this.Tiles.length; j++){
+                checkBounds(LocX, LocY, Tiles[i][j]);
+            }
+        }
+    }
+    
+    //Checks if the point passed was within the bounds of the sprite passed
+    checkBounds(PosX, PosY, Tile){
+        //Check horizontal bounds
+        if(PosX > Tile.getData("PosX") && PosX < Tile.getData("PosX") + Tile.getData("Radius") * 2){
+            //Check vertical bounds
+            if(PosY > Tile.getData("PosY") && PosY < Tile.getData("PosY") + Tile.getData("Radius") * 2){
+                console.log(Tile.getData("COLOR"));
+            }
+        }
+        return true;
+    }
 }
