@@ -14,8 +14,9 @@ class GameScene extends cc.Scene{
         this.addChild(game);
         
         
-        //let gameLayout = new GameLayout();
-        //this.layout = gameLayout;
-        //this.addChild(gameLayout);
+        
+        let gameLayout = new GameLayout();
+        this.layout = gameLayout;
+        this.addChild(gameLayout);
     }
 }
