@@ -35,7 +35,7 @@ class Clickable extends cc.Component{
     onMouseDown(event){
             this.clicked = true;
             this.getOwner().getTile(this.MouseX, this.MouseY);
-            console.log("Mouse Down detected:");
+            //console.log("Mouse Down detected:");
             //console.log("MousePosition X: " + event.getLocationX() + "  Y:" + event.getLocationY());
     }
 
