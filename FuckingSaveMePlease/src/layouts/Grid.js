@@ -7,7 +7,7 @@ class Grid extends ccui.Layout{
         
         //Tile movement logic
         //Will be based on clicking for now
-        //this.tileClicked = false;
+        this.tileClicked = false;
         
         for(var i = 0; i < this.Tiles.length; i++){
             this.Tiles[i] = new Array(8);
@@ -41,7 +41,7 @@ class Grid extends ccui.Layout{
             for(var j = 0; j < this.Tiles.length; j++){
                 if(this.checkBounds(LocX, LocY, this.Tiles[i][j])){
                     console.log("Tile found at: " + i + " , " + j);
-                    this.Tiles[i][j].setColor(0);
+                    //this.Tiles[i][j].setColor(0);
                 }
             }
         }
@@ -49,13 +49,19 @@ class Grid extends ccui.Layout{
     
     //Checks if the point passed was within the bounds of the sprite passed
     checkBounds(PosX, PosY, Tile){
-        console.log("Comparing: " + PosX + ", " + PosY);
-        console.log("To: " + Tile.getData("PosX") + ", " + Tile.getData("PosY"));
+        //console.log("Comparing: " + PosX + ", " + PosY);
+        //console.log("To: " + Tile.getData("PosX") + ", " + Tile.getData("PosY"));
+        
+        let WorldPos = cc.p(PosX, PosY);
+        let NodePos = this.convertToNodeSpace(WorldPos);
+        
+        let currScale = this.getScale();
+        console.log(currScale);
         
         //Check horizontal bounds
-        if(PosX > Tile.getData("PosX") && PosX < Tile.getData("PosX") + Tile.getData("Radius") * 2){
+        if(NodePos.x > Tile.getData("PosX") && NodePos.x < Tile.getData("PosX") + Tile.getData("Radius") * 2 * currScale.x){
             //Check vertical bounds
-            if(PosY > Tile.getData("PosY") && PosY < Tile.getData("PosY") + Tile.getData("Radius") * 2){
+            if(NodePos.y > Tile.getData("PosY") && NodePos.y < Tile.getData("PosY") + Tile.getData("Radius") * 2 * currScale.y){
                 console.log(Tile.getData("COLOR"));
                 return true;
             }

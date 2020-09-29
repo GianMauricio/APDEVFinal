@@ -38,5 +38,11 @@ class GridLayer extends cc.LayerColor{
         }
     }
     
+    //uses Query logic
+    getOffset(query){
+        if(query == "PosX"){return this.x}
+        if(query == "PosY"){return this.y}
+    }
+    
     updateBounds(){}
 }

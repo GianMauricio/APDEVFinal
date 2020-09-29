@@ -17,13 +17,16 @@ class Tile extends cc.DrawNode{
         this.positionX = PosX;
         this.positionY = PosY;
         
-        console.log("TileX at: " + PosX);
-        console.log("TileY at: " + PosY);
+        this.Dot = null;
+        
+        //console.log("TileX at: " + PosX);
+        //console.log("TileY at: " + PosY);
     }
 
     onEnter(){
         super.onEnter();
-        this.drawDot(cc.p(0,0), this.rad, this.tileColor);
+        this.setAnchorPoint(cc.p(0.5, 0.5));
+        this.Dot = this.drawDot(cc.p(0,0), this.rad, this.tileColor);
         
         this.x = this.positionX;
         this.y = this.positionY;
@@ -48,13 +51,13 @@ class Tile extends cc.DrawNode{
     
     //Returns data based on requested element
     getData(query){
-        if(query == "PosX") {return this.positionX;}
-        if(query == "PosY") {return this.positionY;}
+        if(query == "PosX") {return this.x;}
+        if(query == "PosY") {return this.y;}
         if(query == "Radius") {return this.rad;}
         if(query == "colorNum") {return this.colorNum;}
         
         if(query == "COLOR"){ 
-            switch(colorNum){
+            switch(this.colorNum){
                 case 0:
                     return "RED";
                     break;
