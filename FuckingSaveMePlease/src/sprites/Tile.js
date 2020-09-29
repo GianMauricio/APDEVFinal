@@ -25,7 +25,7 @@ class Tile extends cc.DrawNode{
 
     onEnter(){
         super.onEnter();
-        this.setAnchorPoint(cc.p(0.5, 0.5));
+        //this.setAnchorPoint(cc.p(0.5, 0.5));
         this.Dot = this.drawDot(cc.p(0,0), this.rad, this.tileColor);
         
         this.x = this.positionX;
