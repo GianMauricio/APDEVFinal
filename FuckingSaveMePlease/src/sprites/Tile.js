@@ -2,12 +2,12 @@ class Tile extends cc.DrawNode{
     constructor (radius, color, PosX, PosY){
         super();
         
-        if(color == 0) {this.tileColor = cc.color(255, 0 ,0, 255); console.log("RED");}
-        if(color == 1) {this.tileColor = cc.color(0, 255 ,0, 255); console.log("GREEN");}
-        if(color == 2) {this.tileColor = cc.color(0, 0 ,255, 255); console.log("BLUE");}
-        if(color == 3) {this.tileColor = cc.color(255, 0 ,255, 255); console.log("PURPLE");}
-        if(color == 4) {this.tileColor = cc.color(0, 255 ,255, 255); console.log("CYAN");}
-        if(color == 5) {this.tileColor = cc.color(255, 255, 0, 255); console.log("YELLOW");}
+        if(color == 0) {this.tileColor = cc.color(255, 0 ,0, 255);}
+        if(color == 1) {this.tileColor = cc.color(0, 255 ,0, 255);}
+        if(color == 2) {this.tileColor = cc.color(0, 0 ,255, 255);}
+        if(color == 3) {this.tileColor = cc.color(255, 0 ,255, 255);}
+        if(color == 4) {this.tileColor = cc.color(0, 255 ,255, 255);}
+        if(color == 5) {this.tileColor = cc.color(255, 255, 0, 255);}
         
         //console.log(this.tileColor);
         
@@ -16,6 +16,9 @@ class Tile extends cc.DrawNode{
         this.rad = radius;
         this.positionX = PosX;
         this.positionY = PosY;
+        
+        console.log("TileX at: " + PosX);
+        console.log("TileY at: " + PosY);
     }
 
     onEnter(){

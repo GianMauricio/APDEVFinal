@@ -3,8 +3,11 @@ class Grid extends ccui.Layout{
         super();
         
         this.Tiles = new Array(8);
-        
         this.totalTiles = 0;
+        
+        //Tile movement logic
+        //Will be based on clicking for now
+        //this.tileClicked = false;
         
         for(var i = 0; i < this.Tiles.length; i++){
             this.Tiles[i] = new Array(8);
@@ -16,6 +19,11 @@ class Grid extends ccui.Layout{
                 this.addChild(this.Tiles[i][j]);
             }
         }
+        
+        this.ClickListener = null;
+        //this.addComponent(new GameLayerResizer());
+        //this.addComponent(new FitToWindow());
+        //this.addComponent(new EnableOnLandscape());
     }
 
     onEnter(){
@@ -27,11 +35,13 @@ class Grid extends ccui.Layout{
     }
     
     getTile(LocX, LocY){
+        console.log("getTile called");
         //Check if query is within any "tile" (measures square region despite tiles being circular)
         for(var i = 0; i < this.Tiles.length; i++){
             for(var j = 0; j < this.Tiles.length; j++){
-                if(checkBounds(LocX, LocY, Tiles[i][j])){
-                    Tiles[i][j].setColor(0);
+                if(this.checkBounds(LocX, LocY, this.Tiles[i][j])){
+                    console.log("Tile found at: " + i + " , " + j);
+                    this.Tiles[i][j].setColor(0);
                 }
             }
         }
@@ -39,13 +49,20 @@ class Grid extends ccui.Layout{
     
     //Checks if the point passed was within the bounds of the sprite passed
     checkBounds(PosX, PosY, Tile){
+        console.log("Comparing: " + PosX + ", " + PosY);
+        console.log("To: " + Tile.getData("PosX") + ", " + Tile.getData("PosY"));
+        
         //Check horizontal bounds
         if(PosX > Tile.getData("PosX") && PosX < Tile.getData("PosX") + Tile.getData("Radius") * 2){
             //Check vertical bounds
             if(PosY > Tile.getData("PosY") && PosY < Tile.getData("PosY") + Tile.getData("Radius") * 2){
                 console.log(Tile.getData("COLOR"));
+                return true;
             }
         }
-        return true;
+        
+        return false;
     }
+    
+    updateBounds(){}
 }
