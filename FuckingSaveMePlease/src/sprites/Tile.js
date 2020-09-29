@@ -2,6 +2,7 @@ class Tile extends cc.DrawNode{
     constructor (radius, color, PosX, PosY){
         super();
         
+        //Inactive colors
         if(color == 0) {this.tileColor = cc.color(255, 0 ,0, 255);}
         if(color == 1) {this.tileColor = cc.color(0, 255 ,0, 255);}
         if(color == 2) {this.tileColor = cc.color(0, 0 ,255, 255);}
@@ -26,7 +27,7 @@ class Tile extends cc.DrawNode{
     onEnter(){
         super.onEnter();
         //this.setAnchorPoint(cc.p(0.5, 0.5));
-        this.Dot = this.drawDot(cc.p(0,0), this.rad, this.tileColor);
+        this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
         
         this.x = this.positionX;
         this.y = this.positionY;
@@ -46,16 +47,19 @@ class Tile extends cc.DrawNode{
         if(color == 4) {this.tileColor = cc.color(0, 255 ,255, 255); console.log("CYAN");}
         if(color == 5) {this.tileColor = cc.color(255, 255, 0, 255); console.log("YELLOW");}
         
+        //Redraw geometry (Took me 3 fucking hours to get this I swear to god)
+        this.clear();
+        this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
+        
         this.colorNum = color;
     }
     
     //Returns data based on requested element
     getData(query){
-        if(query == "PosX") {return this.x;}
-        if(query == "PosY") {return this.y;}
+        if(query == "PosX") {return this.x - 30;}
+        if(query == "PosY") {return this.y - 30;}
         if(query == "Radius") {return this.rad;}
         if(query == "colorNum") {return this.colorNum;}
-        
         if(query == "COLOR"){ 
             switch(this.colorNum){
                 case 0:
@@ -81,5 +85,7 @@ class Tile extends cc.DrawNode{
                     break;
             }
         }
+        if(query = "h") {return this.height;}
+        if(query = "w") {return this.width;}
     }
 }
