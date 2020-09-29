@@ -55,13 +55,13 @@ class Grid extends ccui.Layout{
         let WorldPos = cc.p(PosX, PosY);
         let NodePos = this.convertToNodeSpace(WorldPos);
         
-        let currScale = this.getScale();
+        let currScale = this.getParent().getScale();
         console.log(currScale);
         
         //Check horizontal bounds
-        if(NodePos.x > Tile.getData("PosX") && NodePos.x < Tile.getData("PosX") + Tile.getData("Radius") * 2 * currScale.x){
+        if(NodePos.x > Tile.getData("PosX") && NodePos.x < Tile.getData("PosX") + Tile.getData("Radius") * 2 * currScale){
             //Check vertical bounds
-            if(NodePos.y > Tile.getData("PosY") && NodePos.y < Tile.getData("PosY") + Tile.getData("Radius") * 2 * currScale.y){
+            if(NodePos.y > Tile.getData("PosY") && NodePos.y < Tile.getData("PosY") + Tile.getData("Radius") * 2 * currScale){
                 console.log(Tile.getData("COLOR"));
                 return true;
             }
