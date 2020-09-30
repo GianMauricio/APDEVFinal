@@ -6,6 +6,7 @@ class PortraitLayout extends ccui.RelativeBox{
         this.addComponent(new FitToWindow());
         this.addComponent(new EnableOnPortrait());
         this.addComponent(new GameLayerResizer());
+       
         this.scoreStr = "Score: " + this.points.toString();
         this.scheduleUpdate();
         this.score = new ccui.Text(this.scoreStr, "Pixel", 36);
