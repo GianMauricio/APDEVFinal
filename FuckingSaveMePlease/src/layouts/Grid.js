@@ -73,14 +73,6 @@ class Grid extends ccui.Layout{
                 if(this.checkBounds(LocX, LocY, this.Tiles[i][j])){
                     //Check for active tile
                     if(this.tileActive){
-                        /*
-                        //Set all tiles to active state
-                        for(var i = 0; i < this.Tiles.length; i++){
-                            for(var j = 0; j < this.Tiles.length; j++){
-                                this.Tiles[i][j].setSelected();
-                            }
-                        }
-                        */
                         
                         //console.log("Attempting to switch...");
                         
@@ -153,6 +145,13 @@ class Grid extends ccui.Layout{
                             this.activeX = 0;
                             this.activeY = 0;
                         }
+                        
+                        //Set all tiles to active state
+                        for(var i = 0; i < this.Tiles.length; i++){
+                            for(var j = 0; j < this.Tiles.length; j++){
+                                this.Tiles[i][j].setSelected();
+                            }
+                        }
                     }
                     
                     //Otherwise set currently Selected tile
@@ -162,7 +161,7 @@ class Grid extends ccui.Layout{
                         this.activeX = j;
                         this.activeY = i;
                         
-                        /*
+                        
                         //Set all tiles to inactive state
                         for(var i = 0; i < this.Tiles.length; i++){
                             for(var j = 0; j < this.Tiles.length; j++){
@@ -172,7 +171,7 @@ class Grid extends ccui.Layout{
                         
                         //Set active tile to active state
                         this.Tiles[this.activeY][this.activeX].setSelected();
-                        */
+                        
                     }
                 }
             }
