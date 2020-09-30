@@ -38,6 +38,14 @@ class GridLayer extends cc.LayerColor{
         }
     }
     
+    onMouseDown(event){
+        if(event == cc.Node.EventType.MOUSE_DOWN){
+
+        console.log(event.x);
+        console.log(event.y);
+        }
+
+    }
     //uses Query logic
     getOffset(query){
         if(query == "PosX"){return this.x}
