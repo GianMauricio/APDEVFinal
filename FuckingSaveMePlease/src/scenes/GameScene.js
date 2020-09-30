@@ -19,7 +19,7 @@ class GameScene extends cc.Scene{
     }
     
     gameOver(){
-        console.log("GameOver Signal recieved");
+        //console.log("GameOver Signal recieved");
         let popup = new GameOverPopUp();
         this.addChild(popup);
     }
