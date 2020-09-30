@@ -417,7 +417,7 @@ class Grid extends ccui.Layout{
         while(gridHasHoles){
             let tilesMovedX = [];
             let tilesMovedY = [];
-            let moveColor = []
+            
             let holeFound = false;
             //Check to see if the grid still has any tiles scheduled to fill
             for(var i = 0; i < this.Tiles.length; i++){
@@ -437,8 +437,6 @@ class Grid extends ccui.Layout{
                             this.Tiles[i][j].setColor(this.Tiles[i][j + 1].getColor());
                             this.Tiles[i][j+ 1].match();
                         }
-                        
-                        moveColor.push(Tiles[i][j].getColor());
                     }
                 }
             }
@@ -446,8 +444,10 @@ class Grid extends ccui.Layout{
             if(holeFound){gridHasHoles = true;}
             else{gridHasHoles = false;}
             
+            console.log(tilesMovedX.toString());
+            
             for(var i = 0; i < tilesMovedX.length; i++){
-                this.checkGrid(tilesMovedX[i], tilesMovedY[i], moveColor[i]);
+                this.checkGrid(tilesMovedX[i], tilesMovedY[i], this.Tiles[tilesMovedX[i]][tilesMovedY[i]].getColor());
             }
         }
     }

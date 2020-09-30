@@ -18,6 +18,7 @@ class Countdown extends cc.Component{
             //console.log("Time is out");
             this.getOwner().timeOut();
             this.timeStart = false;
+            this.startTime = 0.001;
         }
     }
     

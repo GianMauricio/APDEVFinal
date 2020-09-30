@@ -73,9 +73,7 @@ class GameLayout extends ccui.RelativeBox{
         this.score.setString(this.scoreStr);
     }
     
-    //Lament the fact that I cant sex anymore
-    //Why???? I hate this stupid corona virus! I can't get my weekly dose of serotonin from my GF anymore! 
-    //I needed that shit to live! This is so unfair! I curl up in a ball at night crying over the fact that
-    //my GF is also likely feeling as alone (physically) as I am; honestly that makes me more sad than my own
-    //loneliness. Ugh, I just want this stupid quarantine to be over faster :(
+    getScore(){
+        return this.points;
+    }
 }
