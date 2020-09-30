@@ -97,4 +97,25 @@ class Tile extends cc.DrawNode{
         this.tileColor = cc.color(255, 255, 255, 255);
         this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
     }
+    
+    setUnSelected(){
+        if(color == 0) {this.tileColor = cc.color(255, 0 ,0, 155); console.log("RED");}
+        if(color == 1) {this.tileColor = cc.color(0, 255 ,0, 155); console.log("GREEN");}
+        if(color == 2) {this.tileColor = cc.color(0, 0 ,255, 155); console.log("BLUE");}
+        if(color == 3) {this.tileColor = cc.color(255, 0 ,255, 155); console.log("PURPLE");}
+        if(color == 4) {this.tileColor = cc.color(0, 255 ,255, 155); console.log("CYAN");}
+        if(color == 5) {this.tileColor = cc.color(255, 255, 0, 155); console.log("YELLOW");}
+        
+        this.clear();
+        this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
+    }
+    
+    setSelected(){
+        let currColor = this.tileColor;
+        currColor.a = 255;
+        this.tileColor = currColor;
+        
+        this.clear();
+        this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
+    }
 }
