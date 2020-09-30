@@ -10,6 +10,7 @@ class GameOverPopUp extends ccui.Layout{
         this.resetGameButton();
     }
 
+    
     createPopup(){
         let popUp = new ccui.RelativeBox();
         this.popUp = popUp
@@ -67,6 +68,18 @@ class GameOverPopUp extends ccui.Layout{
 
         button.addClickEventListener(this.onClick2.bind(this));
         popUp.addChild(button);
+    }
+    
+    showScore(points){
+        let popUp = this.popUp
+        let scoreStr = "Score: " + points.toString();
+        this.score = new ccui.Text(scoreStr, "Pixel", 36);
+
+        let layoutParameter = new ccui.RelativeLayoutParameter();
+        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_BOTTOM_CENTER_HORIZONTAL);
+        layoutParameter.setMargin(0,0,0,200);
+        this.score.setLayoutParameter(layoutParameter);
+        popUp.addChild(this.score);
     }
     
     onClick(){

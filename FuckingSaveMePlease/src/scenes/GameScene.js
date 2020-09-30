@@ -24,9 +24,14 @@ class GameScene extends cc.Scene{
         //console.log("GameOver Signal recieved");
         let popup = new GameOverPopUp();
         this.addChild(popup);
+        popup.showScore(this.getScore());
     }
     
     addScore(pointsToAdd){
         this.layout.addScore(pointsToAdd);
+    }
+    
+    getScore(){
+        return this.layout.getScore();
     }
 }
