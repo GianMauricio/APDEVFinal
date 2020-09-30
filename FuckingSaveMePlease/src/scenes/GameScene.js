@@ -2,17 +2,19 @@ class GameScene extends cc.Scene{
     constructor(){
         super();
         
-        //this.layout = null;
+        this.layout = null;
         this.gameLayer = null;
     }
     
     onEnter(){
         super.onEnter();
+        
         //Instance game layer
         let game = new GridLayer();
         this.gameLayer = game;
         this.addChild(game);
         
+        //Instance game layout
         let gameLayout = new GameLayout();
         this.layout = gameLayout;
         this.addChild(gameLayout);
@@ -22,5 +24,9 @@ class GameScene extends cc.Scene{
         //console.log("GameOver Signal recieved");
         let popup = new GameOverPopUp();
         this.addChild(popup);
+    }
+    
+    addScore(pointsToAdd){
+        this.layout.addScore(pointsToAdd);
     }
 }

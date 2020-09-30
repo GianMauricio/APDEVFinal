@@ -44,5 +44,10 @@ class GridLayer extends cc.LayerColor{
         if(query == "PosY"){return this.y}
     }
     
+    //Score functionality
+    addScore(pointsToAdd){
+        this.getParent().addScore(pointsToAdd);
+    }
+    
     updateBounds(){}
 }

@@ -20,9 +20,16 @@ class GameLayout extends ccui.RelativeBox{
         let size = cc.winSize;
         this.titleLabel = new ccui.Text("Grid Game", 'Pixel', 36);
         this.addChild(this.titleLabel);
+        
+        //Score stuff
+        this.points = 0;
+        this.scoreStr = "Score: " + this.points.toString();
+        this.score = new ccui.Text(this.scoreStr, "Pixel", 36);
+        this.addChild(this.score);
     }
     
     onEnter(){
+        //Timer setup
         super.onEnter();
         let clockPos = new ccui.RelativeLayoutParameter();
         clockPos.setAlign(ccui.RelativeLayoutParameter.PARENT_TOP_LEFT);
@@ -30,15 +37,18 @@ class GameLayout extends ccui.RelativeBox{
         this.clock.setAnchorPoint(cc.p(0.0, 0.9));
         this.timer.go();
         
+        //Title setup
         let titlePos = new ccui.RelativeLayoutParameter();
         titlePos.setAlign(ccui.RelativeLayoutParameter.PARENT_TOP_RIGHT);
         this.titleLabel.setLayoutParameter(titlePos);
         this.titleLabel.setAnchorPoint(cc.p(0.0, 0.0));
-    }
-    
-    //Make score
-    trackScore(){
         
+        //Score setup
+        let layoutParameter = new ccui.RelativeLayoutParameter();
+        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_RIGHT_BOTTOM);
+        //layoutParameter.setMargin(0,0,0,90);
+        this.score.setLayoutParameter(layoutParameter);
+        this.score.setAnchorPoint(cc.p(0.5,0.9));
     }
     
     //Useless, but it makes stuff work
@@ -52,6 +62,15 @@ class GameLayout extends ccui.RelativeBox{
     //TimeOut function
     timeOut(){
         this.getParent().gameOver();
+    }
+    
+    //Score stuff
+    addScore(pointToAdd){
+        console.log("Adding " + pointToAdd + " to score");
+        
+        this.points += pointToAdd;
+        this.scoreStr = "Score: " + this.points.toString();
+        this.score.setString(this.scoreStr);
     }
     
     //Lament the fact that I cant sex anymore

@@ -137,7 +137,7 @@ class Grid extends ccui.Layout{
                             this.Tiles[i][j].setColor(currTileColor);
                             
                             //Save the active tile data to the displaced tile
-                            displacedColor = this.Tiles[this.activeX][this.activeY].getColor();
+                            displacedColor = this.Tiles[this.activeY][this.activeX].getColor();
                             displacedX = this.activeX;
                             displacedY = this.activeY;
                             
@@ -310,9 +310,13 @@ class Grid extends ccui.Layout{
                 console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement left matches");
                 this.Tiles[TileY- i][TileX ].match();
             }
+            
+            pointsGained += leftMatches;
+            pointsGained += rightMatches;
+            pointsGained--;
         }
         
-        //this.getParent().addScore(pointsGained);
+        this.getParent().addScore(pointsGained);
     }
     
     //Detection alg for right
