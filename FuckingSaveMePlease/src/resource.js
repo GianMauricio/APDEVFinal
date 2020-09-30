@@ -34,7 +34,9 @@ var res = {
     Exit_png: "res/EXIT.png",
     Retry_png: "res/RETRY.png",
     Start_png: "res/START.png",
-    StartClick_png: "res/STARTCLICKED.png"
+    StartClick_png: "res/STARTCLICKED.png",
+    Button9Slice_png: "res/Button9Slice.png",
+    Button9SliceSelected_png: "res/Button9SliceSelected.png"
 };
 
 var g_resources = [];

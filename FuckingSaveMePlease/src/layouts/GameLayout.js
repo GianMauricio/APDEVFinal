@@ -4,7 +4,7 @@ class GameLayout extends ccui.RelativeBox{
         super(cc.winSize);
         //Components and base classes
         this.scheduleUpdate();
-        this.addComponent(new FitToWinldow());
+        this.addComponent(new FitToWindow());
         this.addComponent(new EnableOnLandscape());
         this.addComponent(new GameLayerResizer());
     
@@ -16,15 +16,10 @@ class GameLayout extends ccui.RelativeBox{
         this.timer = new Countdown(this.clock);
         this.addComponent(this.timer);
         
-        //Grid stuff
-        this.createGrid(); //doesn't do shit yet
-        
         //Title text
         let size = cc.winSize;
-        let titleLabel = new cc.LabelTTF("Grid Game", 'Pixel', 36);
-        titleLabel.x = size.width / 2;
-        titleLabel.y = size.height;
-        this.addChild(titleLabel);
+        this.titleLabel = new ccui.Text("Grid Game", 'Pixel', 36);
+        this.addChild(this.titleLabel);
     }
     
     onEnter(){
@@ -34,6 +29,11 @@ class GameLayout extends ccui.RelativeBox{
         this.clock.setLayoutParameter(clockPos);
         this.clock.setAnchorPoint(cc.p(0.0, 0.9));
         this.timer.go();
+        
+        let titlePos = new ccui.RelativeLayoutParameter();
+        titlePos.setAlign(ccui.RelativeLayoutParameter.PARENT_TOP_RIGHT);
+        this.titleLabel.setLayoutParameter(titlePos);
+        this.titleLabel.setAnchorPoint(cc.p(0.0, 0.0));
     }
     
     //Make score
@@ -47,6 +47,11 @@ class GameLayout extends ccui.RelativeBox{
     //Set time func
     setTime(newTime){
         this.clock.setString(newTime.toFixed(2).toString());
+    }
+    
+    //TimeOut function
+    timeOut(){
+        this.getParent().gameOver();
     }
     
     //Lament the fact that I cant sex anymore

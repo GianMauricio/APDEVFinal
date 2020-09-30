@@ -13,8 +13,14 @@ class GameScene extends cc.Scene{
         this.gameLayer = game;
         this.addChild(game);
         
-        //let gameLayout = new GameLayout();
-        //this.layout = gameLayout;
-        //this.addChild(gameLayout);
+        let gameLayout = new GameLayout();
+        this.layout = gameLayout;
+        this.addChild(gameLayout);
+    }
+    
+    gameOver(){
+        console.log("GameOver Signal recieved");
+        let popup = new GameOverPopUp();
+        this.addChild(popup);
     }
 }
