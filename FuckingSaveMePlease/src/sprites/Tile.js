@@ -93,9 +93,9 @@ class Tile extends cc.DrawNode{
     
     match(){
         //DEBUG MAKE TILE WHITE TO TEST FUNCTIONALITY
-        this.clear();
-        this.tileColor = cc.color(255, 255, 255, 255);
-        this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
+        //this.clear();
+        //this.tileColor = cc.color(255, 255, 255, 255);
+        //this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
         
         //Set colorNum to -1 to indicate need for new color
         this.colorNum = -1;
