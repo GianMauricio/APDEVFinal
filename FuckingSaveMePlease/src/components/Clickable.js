@@ -33,7 +33,7 @@ class Clickable extends cc.Component{
         cc.eventManager.addListener(this.Touchlistener, this.getOwner());
     }
 
-    //Handle click logic
+    //Handle click logic (Deprecated)
     onMouseMove(event){
         this.MouseX = event.getLocationX();
         this.MouseY = event.getLocationY();
@@ -58,22 +58,21 @@ class Clickable extends cc.Component{
 
     //Handle touch logic
     onTouchEnter(event){
-        console.log("Touch Up detected:");
-        console.log("TouchPosition X: " + event.getLocationX() + "  Y:" + event.getLocationY());
+        //console.log("Touch Up detected:");
+        //console.log("TouchPosition X: " + event.getLocationX() + "  Y:" + event.getLocationY());
 
         this.touched = false;
     }
-
-
+    
     onTouchBegan(event){
-            console.log("Touch Down detected:");
-            console.log("TouchPosition X: " + event.getLocationX() + "  Y:" + event.getLocationY());
-        
-            this.atX = event.getLocationX();
-            this.atY = event.getLocationY();
-        
-            this.touched = true;
-            this.getOwner().getTile(this.atX, this.atY);
+        //console.log("Touch Down detected:");
+        //console.log("TouchPosition X: " + event.getLocationX() + "  Y:" + event.getLocationY());
+
+        this.atX = event.getLocationX();
+        this.atY = event.getLocationY();
+
+        this.touched = true;
+        this.getOwner().getTile(this.atX, this.atY);
     }
     
     update(dt){

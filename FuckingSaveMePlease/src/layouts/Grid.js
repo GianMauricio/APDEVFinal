@@ -171,7 +171,6 @@ class Grid extends ccui.Layout{
                         
                         //Set active tile to active state
                         this.Tiles[this.activeY][this.activeX].setSelected();
-                        
                     }
                 }
             }
@@ -254,10 +253,37 @@ class Grid extends ccui.Layout{
         let downMatches = this.detectDown(color, TileX, TileY, 0);
         
         //Gimme that sweet sweet data
-        console.log("Up: " + upMatches);
-        console.log("Left: " + leftMatches);
-        console.log("Right: " + rightMatches);
-        console.log("Down: " + downMatches);
+        //console.log("Up: " + upMatches);
+        //console.log("Left: " + leftMatches);
+        //console.log("Right: " + rightMatches);
+        //console.log("Down: " + downMatches);
+        
+        //If there are matches in any orientation...
+        if(upMatches + downMatches - 1 > 2){
+            //Schedule the tiles in those directions for replacement
+            for(var i = TileY; i < upMatches; i++){
+                console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement");
+                this.Tiles[i][TileX].match();
+            }
+            
+            for(var i = downMatches; i > 0; i--){
+                console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement");
+                this.Tiles[i][TileX].match();
+            }
+        }
+        
+        if(leftMatches + rightMatches - 1 > 2){
+            //Schedule the tiles in those directions for replacement
+            for(var i = TileX; i < rightMatches - 1; i++){
+                console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement");
+                this.Tiles[TileY][i].match();
+            }
+            
+            for(var i = leftMatches - 1; i > 0; i--){
+                console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement");
+                this.Tiles[TileY][i].match();
+            }
+        }
     }
     
     //Detection alg for right
@@ -266,12 +292,12 @@ class Grid extends ccui.Layout{
         if(this.Tiles[atY][atX].getColor() == ColorCode){
             matchesFound++;
             
-            //Check if the tile being checked is already on the top most row
+            //Check if the tile being checked is already on the right most row
             if(atY == 7){
                 return matchesFound
             }
 
-            //Otherwise, iterate over to the next tile up
+            //Otherwise, iterate over to the next tile to the right
             else {
                 return this.detectRight(ColorCode, atX, atY + 1, matchesFound);
             }
@@ -287,12 +313,12 @@ class Grid extends ccui.Layout{
         if(this.Tiles[atY][atX].getColor() == ColorCode){
             matchesFound++;
             
-            //Check if the tile being checked is already on the bottom most row
+            //Check if the tile being checked is already on the left most row
             if(atY == 0){
                 return matchesFound
             }
 
-            //Otherwise, iterate over to the next tile down
+            //Otherwise, iterate over to the next to the left
             else {
                 return this.detectLeft(ColorCode, atX, atY - 1, matchesFound);
             }
@@ -308,12 +334,12 @@ class Grid extends ccui.Layout{
         if(this.Tiles[atY][atX].getColor() == ColorCode){
             matchesFound++;
             
-            //Check if the tile being checked is already on the left most row
+            //Check if the tile being checked is already on the bottom row
             if(atX == 0){
                 return matchesFound
             }
 
-            //Otherwise, iterate over to the next tile to the left
+            //Otherwise, iterate over to the next tile down
             else {
                 return this.detectDown(ColorCode, atX - 1, atY, matchesFound);
             }
@@ -329,12 +355,12 @@ class Grid extends ccui.Layout{
         if(this.Tiles[atY][atX].getColor() == ColorCode){
             matchesFound++;
             
-            //Check if the tile being checked is already on the right most row
+            //Check if the tile being checked is already on the up most row
             if(atX == 7){
                 return matchesFound
             }
 
-            //Otherwise, iterate over to the next tile to the left
+            //Otherwise, iterate over to the next tile up
             else {
                 return this.detectUp(ColorCode, atX + 1, atY, matchesFound);
             }
