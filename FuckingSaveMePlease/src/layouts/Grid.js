@@ -63,9 +63,16 @@ class Grid extends ccui.Layout{
     
     getTile(LocX, LocY){
         let switchMade = false;
+        
+        //Inward switch
         let switchX = 0;
         let switchY = 0;
         let seekColor = 0;
+        
+        //Outwards switch
+        let displacedX = 0;
+        let displacedY = 0;
+        let displacedColor = 0;
         
         //Check if query is within any "tile" (measures square region despite tiles being circular)
         for(var i = 0; i < this.Tiles.length; i++){
@@ -95,6 +102,11 @@ class Grid extends ccui.Layout{
                             //Set other tile color to current tile color (from stored variable)
                             this.Tiles[i][j].setColor(currTileColor);
                             
+                            //Save the active tile data to the displaced tile
+                            displacedColor = this.Tiles[this.activeY][this.activeX].getColor();
+                            displacedX = this.activeX;
+                            displacedY = this.activeY;
+                            
                             //Reset active Tile to false
                             this.tileActive = false;
                             this.activeX = 0;
@@ -123,6 +135,11 @@ class Grid extends ccui.Layout{
                             
                             //Set other tile color to current tile color (from stored variable)
                             this.Tiles[i][j].setColor(currTileColor);
+                            
+                            //Save the active tile data to the displaced tile
+                            displacedColor = this.Tiles[this.activeX][this.activeY].getColor();
+                            displacedX = this.activeX;
+                            displacedY = this.activeY;
                             
                             //Reset active Tile to false
                             this.tileActive = false;
@@ -178,8 +195,11 @@ class Grid extends ccui.Layout{
 
         //If a switch was made sucessfully
         if(switchMade){
-            //Check the grid for matches
+            //Check the tile moved for matches
             this.checkGrid(switchX, switchY, seekColor);
+            
+            //Check the tile that got moved for matches
+            this.checkGrid(displacedX, displacedY, displacedColor);
         }
     }
     
