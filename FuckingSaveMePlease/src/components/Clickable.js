@@ -15,6 +15,7 @@ class Clickable extends cc.Component{
 
     onEnter(){
         super.onEnter();
+        /*
         this.Mouselistener = cc.EventListener.create({
             event:cc.EventListener.MOUSE,
             onMouseMove: this.onMouseMove.bind(this),
@@ -22,6 +23,7 @@ class Clickable extends cc.Component{
             onMouseDown: this.onMouseDown.bind(this),
         })
         cc.eventManager.addListener(this.Mouselistener, this.getOwner());
+        */
         
         this.Touchlistener = cc.EventListener.create({
             event:cc.EventListener.TOUCH_ONE_BY_ONE,
