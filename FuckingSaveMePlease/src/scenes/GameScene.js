@@ -12,7 +12,7 @@ class GameScene extends cc.Scene{
         let game = new GridLayer();
         this.gameLayer = game;
         this.addChild(game);
-        
+      
         let gameLayout = new GameLayout();
         this.layout = gameLayout;
         this.addChild(gameLayout);
