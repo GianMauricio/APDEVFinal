@@ -42,12 +42,12 @@ class Tile extends cc.DrawNode{
     
     //Sets new color
     setColor(color){
-        if(color == 0) {this.tileColor = cc.color(255, 0 ,0, 255); console.log("RED");}
-        if(color == 1) {this.tileColor = cc.color(0, 255 ,0, 255); console.log("GREEN");}
-        if(color == 2) {this.tileColor = cc.color(0, 0 ,255, 255); console.log("BLUE");}
-        if(color == 3) {this.tileColor = cc.color(255, 0 ,255, 255); console.log("PURPLE");}
-        if(color == 4) {this.tileColor = cc.color(0, 255 ,255, 255); console.log("CYAN");}
-        if(color == 5) {this.tileColor = cc.color(255, 255, 0, 255); console.log("YELLOW");}
+        if(color == 0) {this.tileColor = cc.color(255, 0 ,0, 255);}
+        if(color == 1) {this.tileColor = cc.color(0, 255 ,0, 255);}
+        if(color == 2) {this.tileColor = cc.color(0, 0 ,255, 255);}
+        if(color == 3) {this.tileColor = cc.color(255, 0 ,255, 255);}
+        if(color == 4) {this.tileColor = cc.color(0, 255 ,255, 255);}
+        if(color == 5) {this.tileColor = cc.color(255, 255, 0, 255);}
         
         //Redraw geometry (Took me 3 fucking hours to get this I swear to god)
         this.clear();
@@ -92,14 +92,17 @@ class Tile extends cc.DrawNode{
     }
     
     match(){
-        //DEBUG MAKE TILE BLACK TO TEST FUNCTIONALITY
+        //DEBUG MAKE TILE WHITE TO TEST FUNCTIONALITY
         this.clear();
         this.tileColor = cc.color(255, 255, 255, 255);
         this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
+        
+        //Set colorNum to -1 to indicate need for new color
+        this.colorNum = -1;
     }
     
     setUnSelected(){
-        console.log("Setting as unselected");
+        //console.log("Setting as unselected");
         if(this.colorNum == 0) {this.tileColor = cc.color(255, 0, 0, 155);}
         if(this.colorNum == 1) {this.tileColor = cc.color(0, 255, 0, 155);}
         if(this.colorNum == 2) {this.tileColor = cc.color(0, 0, 255, 155);}
@@ -112,7 +115,7 @@ class Tile extends cc.DrawNode{
     }
     
     setSelected(){
-        console.log("Setting as selected");
+        //console.log("Setting as selected");
         if(this.colorNum == 0) {this.tileColor = cc.color(255, 0 ,0, 255);}
         if(this.colorNum == 1) {this.tileColor = cc.color(0, 255 ,0, 255);}
         if(this.colorNum == 2) {this.tileColor = cc.color(0, 0 ,255, 255);}
