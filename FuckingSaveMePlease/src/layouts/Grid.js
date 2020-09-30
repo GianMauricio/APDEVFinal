@@ -47,6 +47,7 @@ class Grid extends ccui.Layout{
         }
         
         this.ClickListener = null;
+        this.TouchListener = null;
         //this.addComponent(new GameLayerResizer());
         //this.addComponent(new FitToWindow());
         //this.addComponent(new EnableOnLandscape());
@@ -175,9 +176,10 @@ class Grid extends ccui.Layout{
     }
     
     //Runs through the grid and checks for match 3's
-    checkGrid(){
+    checkGrid(TileX, TileY){
         //This needs to be as efficient as possible...
         
+        /*
         //Time complexity: 2(n^2) (Check the entire grid for triplicates)
         //Search rows
         for(var i = 0; i < this.Tiles.length; i++){
@@ -208,6 +210,10 @@ class Grid extends ccui.Layout{
                 }
             }
         }
+        */
+        
+        //Time complexity: C
+        //Uses different logic depending on how close the tile is to the side of the grid
     }
     
     updateBounds(){}
