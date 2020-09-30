@@ -56,11 +56,6 @@ class GameLayout extends ccui.RelativeBox{
         this.timer.go();
     }
     
-    //Make grid
-    createGrid(){
-        
-    }
-    
     //Make score
     trackScore(){
         
