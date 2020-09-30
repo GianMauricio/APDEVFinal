@@ -5,11 +5,10 @@ class Countdown extends cc.Component{
         this.startTime = 7200;
         this.time = clock;
         this.timeStart  = false;
-        this.timeStop = false;
     }
     
     update(dt){
-        if(this.timeStart && this.timeStop == false){
+        if(this.timeStart){
             this.seconds = this.startTime / 60;
             this.getOwner().setTime(this.seconds);
             this.startTime = this.startTime - 1;
@@ -24,9 +23,5 @@ class Countdown extends cc.Component{
     
     go(){
         this.timeStart = true;
-    }
-
-    stop(){
-        this.timeStop = true;
     }
 }
