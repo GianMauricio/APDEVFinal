@@ -230,6 +230,8 @@ class Grid extends ccui.Layout{
     
     //Runs through the grid and checks for match 3's
     checkGrid(TileX, TileY, color){
+        //Will be passed up to parent for processing
+        let pointsGained = 0;
         //This needs to be as efficient as possible...
         
         //Time complexity: 2(n^2) (Check the entire grid for triplicates)
@@ -265,7 +267,7 @@ class Grid extends ccui.Layout{
         }
         */
         
-        //Time complexity: 4log(n)
+        //Time complexity: 4log(n) (When this worked I swear I could see light from heaven)
         //Uses recursion logic to check for matching tiles adjacent to current tile, and count matches found
         let upMatches = this.detectUp(color, TileX, TileY, 0);
         let leftMatches = this.detectLeft(color, TileX, TileY, 0);
@@ -291,6 +293,10 @@ class Grid extends ccui.Layout{
                 console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement down matches");
                 this.Tiles[TileY ][TileX - i].match();
             }
+            
+            pointsGained += upMatches;
+            pointsGained += downMatches;
+            pointsGained--;
         }
 
         if(leftMatches + rightMatches - 1 > 2){
@@ -305,6 +311,8 @@ class Grid extends ccui.Layout{
                 this.Tiles[TileY- i][TileX ].match();
             }
         }
+        
+        //this.getParent().addScore(pointsGained);
     }
     
     //Detection alg for right
