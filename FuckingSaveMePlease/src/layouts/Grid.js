@@ -63,6 +63,10 @@ class Grid extends ccui.Layout{
     
     getTile(LocX, LocY){
         let switchMade = false;
+        let switchX = 0;
+        let switchY = 0;
+        let seekColor = 0;
+        
         //Check if query is within any "tile" (measures square region despite tiles being circular)
         for(var i = 0; i < this.Tiles.length; i++){
             for(var j = 0; j < this.Tiles.length; j++){
@@ -97,6 +101,11 @@ class Grid extends ccui.Layout{
                             
                             //Set Switch made to true
                             switchMade = true;
+                            
+                            //Gather switch data
+                            switchX = j;
+                            switchY = i;
+                            seekColor = this.Tiles[i][j].getColor();
                         }
                         
                         //Check for horizontal adjacency
@@ -121,6 +130,11 @@ class Grid extends ccui.Layout{
                             
                             //Set switch made to true
                             switchMade = true;
+                            
+                            //Gather switch data
+                            switchX = j;
+                            switchY = i;
+                            seekColor = this.Tiles[i][j].getColor();
                         }
                         
                         //If no adjacency detected, unselect tile
@@ -146,7 +160,7 @@ class Grid extends ccui.Layout{
         //If a switch was made sucessfully
         if(switchMade){
             //Check the grid for matches
-            //this.checkGrid();
+            this.checkGrid(switchX, switchY, seekColor);
         }
     }
     
@@ -167,7 +181,7 @@ class Grid extends ccui.Layout{
             if(NodePos.y > Tile.getData("PosY") && NodePos.y < Tile.getData("PosY") + Tile.getData("Radius") * 2 * currScale + 30){
                 
                 //Verify tile color
-                console.log(Tile.getData("COLOR"));
+                //console.log(Tile.getData("COLOR"));
                 return true;
             }
         }
@@ -176,11 +190,11 @@ class Grid extends ccui.Layout{
     }
     
     //Runs through the grid and checks for match 3's
-    checkGrid(TileX, TileY){
+    checkGrid(TileX, TileY, color){
         //This needs to be as efficient as possible...
         
-        /*
         //Time complexity: 2(n^2) (Check the entire grid for triplicates)
+        /*
         //Search rows
         for(var i = 0; i < this.Tiles.length; i++){
             for(var j = 0; j < this.Tiles.length; j++){
@@ -212,9 +226,102 @@ class Grid extends ccui.Layout{
         }
         */
         
-        //Time complexity: C
-        //Uses different logic depending on how close the tile is to the side of the grid
+        //Time complexity: 4log(n)
+        //Uses recursion logic to check for matching tiles adjacent to current tile, and count matches found
+        let upMatches = this.detectUp(color, TileX, TileY, 0);
+        let leftMatches = this.detectLeft(color, TileX, TileY, 0);
+        let rightMatches = this.detectRight(color, TileX, TileY, 0);
+        let downMatches = this.detectDown(color, TileX, TileY, 0);
+        
+        //Gimme that sweet sweet data
+        console.log("Up: " + upMatches);
+        console.log("Left: " + leftMatches);
+        console.log("Right: " + rightMatches);
+        console.log("Down: " + downMatches);
     }
     
+    //Detection alg for upwards
+    detectUp(ColorCode, atX, atY, matchesFound){
+        //Check if the tile currently being checked matches the color code needed
+        if(this.Tiles[atY][atX].getColor() == ColorCode){
+            matchesFound++;
+            
+            //Check if the tile being checked is already on the top most row
+            if(atY == 7){
+                return matchesFound
+            }
+
+            //Otherwise, iterate over to the next tile up
+            else {
+                return this.detectUp(ColorCode, atX, atY + 1, matchesFound);
+            }
+        }
+        
+        //Otherwise return matches found
+        else {return matchesFound;}
+    }
+    
+    //Detection alg for downwards
+    detectDown(ColorCode, atX, atY, matchesFound){
+        //Check if the tile currently being checked matches the color code needed
+        if(this.Tiles[atY][atX].getColor() == ColorCode){
+            matchesFound++;
+            
+            //Check if the tile being checked is already on the bottom most row
+            if(atY == 0){
+                return matchesFound
+            }
+
+            //Otherwise, iterate over to the next tile down
+            else {
+                return this.detectDown(ColorCode, atX, atY - 1, matchesFound);
+            }
+        }
+        
+        //Otherwise return matches found
+        else {return matchesFound;}
+    }
+    
+    //Detection alg for left
+    detectLeft(ColorCode, atX, atY, matchesFound){
+        //Check if the tile currently being checked matches the color code needed
+        if(this.Tiles[atY][atX].getColor() == ColorCode){
+            matchesFound++;
+            
+            //Check if the tile being checked is already on the left most row
+            if(atX == 0){
+                return matchesFound
+            }
+
+            //Otherwise, iterate over to the next tile to the left
+            else {
+                return this.detectLeft(ColorCode, atX - 1, atY, matchesFound);
+            }
+        }
+        
+        //Otherwise return matches found
+        else {return matchesFound;}
+    }
+    
+    //Detection alg for right
+    detectRight(ColorCode, atX, atY, matchesFound){
+        //Check if the tile currently being checked matches the color code needed
+        if(this.Tiles[atY][atX].getColor() == ColorCode){
+            matchesFound++;
+            
+            //Check if the tile being checked is already on the right most row
+            if(atX == 7){
+                return matchesFound
+            }
+
+            //Otherwise, iterate over to the next tile to the left
+            else {
+                return this.detectRight(ColorCode, atX + 1, atY, matchesFound);
+            }
+        }
+        
+        //Otherwise return matches found
+        else {return matchesFound;}
+    }
     updateBounds(){}
 }
