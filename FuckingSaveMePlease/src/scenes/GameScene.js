@@ -2,7 +2,8 @@ class GameScene extends cc.Scene{
     constructor(){
         super();
         
-        this.layout = null;
+        this.layoutLandscape = null;
+        this.layoutPortrait = null;
         this.gameLayer = null;
     }
     
@@ -15,23 +16,28 @@ class GameScene extends cc.Scene{
         this.addChild(game);
         
         //Instance game layout
-        let gameLayout = new GameLayout();
-        this.layout = gameLayout;
-        this.addChild(gameLayout);
+        let gameLayoutLand = new GameLayoutLandscape();
+        this.layoutLandscape = gameLayoutLand;
+        this.addChild(gameLayoutLand);
+
+        let gameLayoutPort = new GameLayoutPortrait();
+        this.layoutPortrait = gameLayoutPort;
+        this.addChild(gameLayoutPort);
+
     }
     
     gameOver(){
-        //console.log("GameOver Signal recieved");
         let popup = new GameOverPopUp();
         this.addChild(popup);
         popup.showScore(this.getScore());
     }
     
     addScore(pointsToAdd){
-        this.layout.addScore(pointsToAdd);
+        this.layoutLandscape.addScore(pointsToAdd);
+        this.layoutPortrait.addScore(pointsToAdd);
     }
     
     getScore(){
-        return this.layout.getScore();
+        return this.layoutLandscape.getScore();
     }
 }

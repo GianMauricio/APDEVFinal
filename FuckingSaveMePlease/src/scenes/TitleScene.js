@@ -2,13 +2,19 @@ class TitleScene extends cc.Scene{
     constructor(){
         super();
         
-        this.layout = null;
+        this.portraitlayout = null;
+        this.landscapelayout = null;
     }
     
     onEnter(){
         super.onEnter();
-        let titleLayout = new TitleLayout();
-        this.layout = titleLayout;
-        this.addChild(titleLayout);
+        let titleLayoutportrait = new TitleLayoutPortrait();
+        this.portraitlayout = titleLayoutportrait;
+        this.addChild(titleLayoutportrait);
+
+        let titleLayoutlandscape = new TitleLayoutLandscape();
+        this.landscapelayout = titleLayoutlandscape;
+        this.addChild(titleLayoutlandscape);
+
     }
 }

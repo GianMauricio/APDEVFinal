@@ -1,4 +1,4 @@
-class GameLayout extends ccui.RelativeBox{
+class GameLayoutLandscape extends ccui.RelativeBox{
     //Constructor
     constructor(){        
         super(cc.winSize);
@@ -12,13 +12,13 @@ class GameLayout extends ccui.RelativeBox{
         this.clock = new ccui.Text("120", 'Pixel', 36);
         this.addChild(this.clock);
         
-        //Timer conponent
+        //Timer component
         this.timer = new Countdown(this.clock);
         this.addComponent(this.timer);
         
         //Title text
         let size = cc.winSize;
-        this.titleLabel = new ccui.Text("Grid Game", 'Pixel', 36);
+        this.titleLabel = new ccui.Text("MCP", 'Pixel', 64);
         this.addChild(this.titleLabel);
         
         //Score stuff
@@ -41,17 +41,16 @@ class GameLayout extends ccui.RelativeBox{
         let titlePos = new ccui.RelativeLayoutParameter();
         titlePos.setAlign(ccui.RelativeLayoutParameter.PARENT_TOP_RIGHT);
         this.titleLabel.setLayoutParameter(titlePos);
-        this.titleLabel.setAnchorPoint(cc.p(0.0, 0.0));
+        this.titleLabel.setAnchorPoint(cc.p(0.9, 0.0));
         
         //Score setup
         let layoutParameter = new ccui.RelativeLayoutParameter();
-        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_RIGHT_BOTTOM);
-        //layoutParameter.setMargin(0,0,0,90);
+        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_RIGHT_CENTER_VERTICAL);
         this.score.setLayoutParameter(layoutParameter);
-        this.score.setAnchorPoint(cc.p(0.5,0.9));
+        this.score.setAnchorPoint(cc.p(0.9,0.9));
     }
     
-    //Useless, but it makes stuff work
+    
     updateBounds(){};
     
     //Set time func

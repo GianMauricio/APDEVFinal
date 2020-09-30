@@ -48,9 +48,7 @@ class Grid extends ccui.Layout{
         
         this.ClickListener = null;
         this.TouchListener = null;
-        //this.addComponent(new GameLayerResizer());
-        //this.addComponent(new FitToWindow());
-        //this.addComponent(new EnableOnLandscape());
+        
     }
 
     onEnter(){
@@ -81,17 +79,10 @@ class Grid extends ccui.Layout{
                     //Check for active tile
                     if(this.tileActive){
                         
-                        //console.log("Attempting to switch...");
-                        
-                        //Data check
-                        //console.log("Active tile at: " + this.activeY + ", " + this.activeX);
-                        //console.log("Tile to swtich at: " + i + ", " + j);
-                        
                         //Check for vertical adjacency
                         if(this.activeX == j - 1 && this.activeY == i || 
                            this.activeX == j + 1 && this.activeY == i){
-                            //console.log("Vertical Match found!");
-                            
+                           
                             //Switch tile colors (Needed to write down the steps coz I am small brain)
                             //Set variable to hold current tile color
                             let currTileColor = this.Tiles[this.activeY][this.activeX].getColor();
@@ -124,7 +115,7 @@ class Grid extends ccui.Layout{
                         //Check for horizontal adjacency
                         else if(this.activeY == i - 1 && this.activeX == j || 
                                 this.activeY == i + 1 && this.activeX == j){
-                            //console.log("Horizontal Match found!");
+                
                             
                             //Switch tile colors (Needed to write down the steps coz I am small brain)
                             //Set variable to hold current tile color
@@ -157,7 +148,7 @@ class Grid extends ccui.Layout{
                         
                         //If no adjacency detected, unselect tile
                         else{
-                            console.log("No match found, unselecting tile");
+                         
                             this.tileActive = false;
                             this.activeX = 0;
                             this.activeY = 0;
@@ -173,7 +164,7 @@ class Grid extends ccui.Layout{
                     
                     //Otherwise set currently Selected tile
                     else{
-                        //console.log("Setting new active tile");
+                    
                         this.tileActive = true;
                         this.activeX = j;
                         this.activeY = i;
@@ -220,7 +211,7 @@ class Grid extends ccui.Layout{
             if(NodePos.y > Tile.getData("PosY") && NodePos.y < Tile.getData("PosY") + Tile.getData("Radius") * 2 * currScale + 30){
                 
                 //Verify tile color
-                //console.log(Tile.getData("COLOR"));
+                
                 return true;
             }
         }
@@ -233,65 +224,26 @@ class Grid extends ccui.Layout{
         //Will be passed up to parent for processing
         let pointsGained = 0;
         let matchFound = false;
-        //This needs to be as efficient as possible...
         
-        //Time complexity: 2(n^2) (Check the entire grid for triplicates)
-        /*
-        //Search rows
-        for(var i = 0; i < this.Tiles.length; i++){
-            for(var j = 0; j < this.Tiles.length; j++){
-                //Check that current tile isn't near the right most edge
-                if(j < 6){
-                    //Check if both tiles (to the right) are the same color as the current tile
-                    if(this.Tiles[i][j].getColor() == this.Tiles[i][j + 1].getColor() == this.Tiles[i][j + 2].getColor()){
-                        this.Tiles[i][j].match();
-                        this.Tiles[i][j + 1].match();
-                        this.Tiles[i][j + 2].match();
-                    }
-                }
-            }
-        }
         
-        //Search columns
-        for(var i = 0; i < this.Tiles.length; i++){
-            for(var j = 0; j < this.Tiles.length; j++){
-                //Check that current tile isn't on the top
-                if(i < 6){
-                    //Check if both tiles (to the right) are the same color as the current tile
-                    if(this.Tiles[i][j].getColor() == this.Tiles[i + 1][j].getColor() == this.Tiles[i + 2][j].getColor()){
-                        this.Tiles[i][j].match();
-                        this.Tiles[i + 1][j].match();
-                        this.Tiles[i + 2][j].match();
-                    }
-                }
-            }
-        }
-        */
-        
-        //Time complexity: 4log(n) (When this worked I swear I could see light from heaven)
+        //Time complexity: 4log(n) 
         //Uses recursion logic to check for matching tiles adjacent to current tile, and count matches found
         let upMatches = this.detectUp(color, TileX, TileY, 0);
         let leftMatches = this.detectLeft(color, TileX, TileY, 0);
         let rightMatches = this.detectRight(color, TileX, TileY, 0);
         let downMatches = this.detectDown(color, TileX, TileY, 0);
         
-        //Gimme that sweet sweet data
-        //console.log("Up: " + upMatches);
-        //console.log("Left: " + leftMatches);
-        //console.log("Right: " + rightMatches);
-        //console.log("Down: " + downMatches);
-        
+       
         //If there are matches in any orientation...
         if(upMatches + downMatches - 1 > 2){
             //Schedule the tiles in those directions for replacement
             for(var i = 0; i < upMatches; i++){
-                console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement up matches");
+                
                 this.Tiles[TileY ][TileX + i].match();
             }
 
             for(var i = 0; i < downMatches; i++){
-                console.log (i + " down");
-                console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement down matches");
+              
                 this.Tiles[TileY ][TileX - i].match();
             }
             
@@ -304,12 +256,12 @@ class Grid extends ccui.Layout{
         if(leftMatches + rightMatches - 1 > 2){
             //Schedule the tiles in those directions for replacement
             for(var i = 0; i < rightMatches; i++){
-                console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement right matches");
+                
                 this.Tiles[TileY + i][TileX].match();
             }
 
             for(var i = 0; i < leftMatches; i++){
-                console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement left matches");
+               
                 this.Tiles[TileY- i][TileX ].match();
             }
             
@@ -422,6 +374,8 @@ class Grid extends ccui.Layout{
             //Check to see if the grid still has any tiles scheduled to fill
             for(var i = 0; i < this.Tiles.length; i++){
                 for(var j = 0; j < this.Tiles.length; j++){
+                    
+                    
                     if(this.Tiles[i][j].getColor() == -1){
                         holeFound = true;
                         tilesMovedX.push(i);
@@ -444,7 +398,7 @@ class Grid extends ccui.Layout{
             if(holeFound){gridHasHoles = true;}
             else{gridHasHoles = false;}
             
-            console.log(tilesMovedX.toString());
+           
             
             for(var i = 0; i < tilesMovedX.length; i++){
                 this.checkGrid(tilesMovedX[i], tilesMovedY[i], this.Tiles[tilesMovedX[i]][tilesMovedY[i]].getColor());
