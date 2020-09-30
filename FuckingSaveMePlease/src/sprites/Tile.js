@@ -9,7 +9,7 @@ class Tile extends cc.DrawNode{
         if(color == 4) {this.tileColor = cc.color(0, 255 ,255, 255);}
         if(color == 5) {this.tileColor = cc.color(255, 255, 0, 255);}
         
-        //console.log(this.tileColor);
+       
         
         this.colorNum = color;
         
@@ -19,8 +19,6 @@ class Tile extends cc.DrawNode{
         
         this.Dot = null;
         
-        //console.log("TileX at: " + PosX);
-        //console.log("TileY at: " + PosY);
         
         //This value will determine if the tile is in a matched state
         this.matched = false;
@@ -49,7 +47,7 @@ class Tile extends cc.DrawNode{
         if(color == 4) {this.tileColor = cc.color(0, 255 ,255, 255);}
         if(color == 5) {this.tileColor = cc.color(255, 255, 0, 255);}
         
-        //Redraw geometry (Took me 3 fucking hours to get this I swear to god)
+        //Redraw geometry 
         this.clear();
         this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
         
@@ -92,17 +90,10 @@ class Tile extends cc.DrawNode{
     }
     
     match(){
-        //DEBUG MAKE TILE WHITE TO TEST FUNCTIONALITY
-        //this.clear();
-        //this.tileColor = cc.color(255, 255, 255, 255);
-        //this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
-        
-        //Set colorNum to -1 to indicate need for new color
         this.colorNum = -1;
     }
     
     setUnSelected(){
-        //console.log("Setting as unselected");
         if(this.colorNum == 0) {this.tileColor = cc.color(255, 0, 0, 155);}
         if(this.colorNum == 1) {this.tileColor = cc.color(0, 255, 0, 155);}
         if(this.colorNum == 2) {this.tileColor = cc.color(0, 0, 255, 155);}
@@ -115,7 +106,6 @@ class Tile extends cc.DrawNode{
     }
     
     setSelected(){
-        //console.log("Setting as selected");
         if(this.colorNum == 0) {this.tileColor = cc.color(255, 0 ,0, 255);}
         if(this.colorNum == 1) {this.tileColor = cc.color(0, 255 ,0, 255);}
         if(this.colorNum == 2) {this.tileColor = cc.color(0, 0 ,255, 255);}

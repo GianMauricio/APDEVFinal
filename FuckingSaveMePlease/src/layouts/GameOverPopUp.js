@@ -4,6 +4,7 @@ class GameOverPopUp extends ccui.Layout{
         this.setContentSize(cc.winSize);
         this.scheduleUpdate();
         this.addComponent(new FitToWindow());
+        this.addComponent(new GameLayerResizer());
 
         this.createPopup();
         this.toTitleButton();
@@ -34,11 +35,11 @@ class GameOverPopUp extends ccui.Layout{
 
         button.setScale9Enabled(true);
         button.setCapInsets(cc.rect(20, 20, 20, 20));
-        button.setContentSize(cc.size(250, 50));
+        button.setContentSize(cc.size(150, 50));
 
         button.setTitleFontSize(26);
         button.setTitleFontName("Pixel");
-        button.setTitleText("Back to Title");
+        button.setTitleText("Title");
 
         let layoutParameter = new ccui.RelativeLayoutParameter();
         layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_BOTTOM_CENTER_HORIZONTAL);
@@ -62,7 +63,7 @@ class GameOverPopUp extends ccui.Layout{
         button.setTitleText("Restart");
 
         let layoutParameter = new ccui.RelativeLayoutParameter();
-        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_BOTTOM_CENTER_HORIZONTAL);
+        layoutParameter.setAlign(ccui.RelativeLayoutParameter.CENTER_IN_PARENT);
         layoutParameter.setMargin(0,0,0,90);
         button.setLayoutParameter(layoutParameter);
 
@@ -76,20 +77,19 @@ class GameOverPopUp extends ccui.Layout{
         this.score = new ccui.Text(scoreStr, "Pixel", 36);
 
         let layoutParameter = new ccui.RelativeLayoutParameter();
-        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_BOTTOM_CENTER_HORIZONTAL);
-        layoutParameter.setMargin(0,0,0,200);
+        layoutParameter.setAlign(ccui.RelativeLayoutParameter.PARENT_TOP_CENTER_HORIZONTAL);
         this.score.setLayoutParameter(layoutParameter);
         popUp.addChild(this.score);
     }
     
-    onClick(){
+    onClick(){ // for Title
         let scaleTo = new cc.ScaleTo(0.2,0.0);
         let callFunc = new cc.callFunc(this.onFinish, this);
         scaleTo = new cc.EaseBackIn(scaleTo)
         this.popUp.runAction(new cc.sequence(scaleTo, callFunc));
     }
     
-    onClick2(){
+    onClick2(){ //for restart
         let scaleTo = new cc.ScaleTo(0.2,0.0);
         let callFunc = new cc.callFunc(this.onFinish2, this);
         scaleTo = new cc.EaseBackIn(scaleTo)
@@ -103,5 +103,5 @@ class GameOverPopUp extends ccui.Layout{
     onFinish2(){
         cc.director.runScene(new GameScene());
     }
-
+    updateBounds(){}
 }
