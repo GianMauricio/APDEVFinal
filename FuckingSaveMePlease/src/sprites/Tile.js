@@ -2,7 +2,6 @@ class Tile extends cc.DrawNode{
     constructor (radius, color, PosX, PosY){
         super();
         
-        //Inactive colors
         if(color == 0) {this.tileColor = cc.color(255, 0 ,0, 255);}
         if(color == 1) {this.tileColor = cc.color(0, 255 ,0, 255);}
         if(color == 2) {this.tileColor = cc.color(0, 0 ,255, 255);}
@@ -22,6 +21,9 @@ class Tile extends cc.DrawNode{
         
         //console.log("TileX at: " + PosX);
         //console.log("TileY at: " + PosY);
+        
+        //This value will determine if the tile is in a matched state
+        this.matched = false;
     }
 
     onEnter(){
@@ -87,5 +89,12 @@ class Tile extends cc.DrawNode{
         }
         if(query = "h") {return this.height;}
         if(query = "w") {return this.width;}
+    }
+    
+    match(){
+        //DEBUG MAKE TILE BLACK TO TEST FUNCTIONALITY
+        this.clear();
+        this.tileColor = cc.color(255, 255, 255, 255);
+        this.Dot = this.drawDot(cc.p(0.9, 0), this.rad, this.tileColor);
     }
 }
