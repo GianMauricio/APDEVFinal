@@ -232,6 +232,7 @@ class Grid extends ccui.Layout{
     checkGrid(TileX, TileY, color){
         //Will be passed up to parent for processing
         let pointsGained = 0;
+        let matchFound = false;
         //This needs to be as efficient as possible...
         
         //Time complexity: 2(n^2) (Check the entire grid for triplicates)
@@ -294,6 +295,7 @@ class Grid extends ccui.Layout{
                 this.Tiles[TileY ][TileX - i].match();
             }
             
+            matchFound = true;
             pointsGained += upMatches;
             pointsGained += downMatches;
             pointsGained--;
@@ -311,9 +313,14 @@ class Grid extends ccui.Layout{
                 this.Tiles[TileY- i][TileX ].match();
             }
             
+            matchFound = true;
             pointsGained += leftMatches;
             pointsGained += rightMatches;
             pointsGained--;
+        }
+        
+        if(matchFound){
+            this.refreshGrid();
         }
         
         this.getParent().addScore(pointsGained);
@@ -402,5 +409,36 @@ class Grid extends ccui.Layout{
         //Otherwise return matches found
         else {return matchesFound;}
     }
+    
+    //Runs through grid and processes any tiles scheduled for change
+    refreshGrid(){
+        let gridHasHoles = true;
+        while(gridHasHoles){
+            let holeFound = false;
+            //Check to see if the grid still has any tiles scheduled to fill
+            for(var i = 0; i < this.Tiles.length; i++){
+                for(var j = 0; j < this.Tiles.length; j++){
+                    if(this.Tiles[i][j].getColor() == -1){
+                        holeFound = true;
+                        //If the tile is on the uppermost row...
+                        if(j == 0){
+                            //Give it a new color
+                            this.Tiles[i][j].setColor(Math.floor(Math.random() * 6));
+                        }
+                        
+                        //Otherwise yoink the color of the tile above it, and schedule that tile
+                        else{
+                            this.Tiles[i][j].setColor(this.Tiles[i][j - 1].getColor());
+                            this.Tiles[i][j - 1].match();
+                        }
+                    }
+                }
+            }
+            
+            if(holeFound){gridHasHoles = true;}
+            else{gridHasHoles = false;}
+        }
+    }
+    
     updateBounds(){}
 }
