@@ -413,30 +413,42 @@ class Grid extends ccui.Layout{
     //Runs through grid and processes any tiles scheduled for change
     refreshGrid(){
         let gridHasHoles = true;
+        
         while(gridHasHoles){
+            let tilesMovedX = [];
+            let tilesMovedY = [];
+            let moveColor = []
             let holeFound = false;
             //Check to see if the grid still has any tiles scheduled to fill
             for(var i = 0; i < this.Tiles.length; i++){
                 for(var j = 0; j < this.Tiles.length; j++){
                     if(this.Tiles[i][j].getColor() == -1){
                         holeFound = true;
+                        tilesMovedX.push(i);
+                        tilesMovedY.push(j);
                         //If the tile is on the uppermost row...
-                        if(j == 0){
+                        if(j == 7){
                             //Give it a new color
                             this.Tiles[i][j].setColor(Math.floor(Math.random() * 6));
                         }
                         
                         //Otherwise yoink the color of the tile above it, and schedule that tile
                         else{
-                            this.Tiles[i][j].setColor(this.Tiles[i][j - 1].getColor());
-                            this.Tiles[i][j - 1].match();
+                            this.Tiles[i][j].setColor(this.Tiles[i][j + 1].getColor());
+                            this.Tiles[i][j+ 1].match();
                         }
+                        
+                        moveColor.push(Tiles[i][j].getColor());
                     }
                 }
             }
             
             if(holeFound){gridHasHoles = true;}
             else{gridHasHoles = false;}
+            
+            for(var i = 0; i < tilesMovedX.length; i++){
+                this.checkGrid(tilesMovedX[i], tilesMovedY[i], moveColor[i]);
+            }
         }
     }
     
