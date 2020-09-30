@@ -39,7 +39,7 @@ class TitleLayout extends ccui.RelativeBox{
     }
     
     onClick(){
-        console.log("ButtonClicked");
+        //console.log("ButtonClicked");
         cc.director.runScene(new GameScene());
     }
     

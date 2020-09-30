@@ -12,17 +12,15 @@ class GameScene extends cc.Scene{
         let game = new GridLayer();
         this.gameLayer = game;
         this.addChild(game);
-        
-<<<<<<< HEAD
-        
-        
+      
         let gameLayout = new GameLayout();
         this.layout = gameLayout;
         this.addChild(gameLayout);
-=======
-        //let gameLayout = new GameLayout();
-        //this.layout = gameLayout;
-        //this.addChild(gameLayout);
->>>>>>> 1005b2d431b1540b250ab34ebb2002f0ec48ade9
+    }
+    
+    gameOver(){
+        console.log("GameOver Signal recieved");
+        let popup = new GameOverPopUp();
+        this.addChild(popup);
     }
 }

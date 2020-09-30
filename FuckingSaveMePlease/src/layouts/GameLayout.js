@@ -23,19 +23,10 @@ class GameLayout extends ccui.RelativeBox{
         this.timer = new Countdown(this.clock);
         this.addComponent(this.timer);
         
-        //Grid stuff
-        this.createGrid(); //doesn't do shit yet
-        
         //Title text
         let size = cc.winSize;
-        let titleLabel = new cc.LabelTTF("Grid Game", 'Pixel', 36);
-        titleLabel.x = size.width / 2;
-        titleLabel.y = size.height;
-        this.addChild(titleLabel);
-
-      
-
-
+        this.titleLabel = new ccui.Text("Grid Game", 'Pixel', 36);
+        this.addChild(this.titleLabel);
     }
     
     onEnter(){
@@ -54,6 +45,11 @@ class GameLayout extends ccui.RelativeBox{
         this.score.setAnchorPoint(cc.p(0.5,0.9));
         this.addChild(this.score);
         this.timer.go();
+        
+        let titlePos = new ccui.RelativeLayoutParameter();
+        titlePos.setAlign(ccui.RelativeLayoutParameter.PARENT_TOP_RIGHT);
+        this.titleLabel.setLayoutParameter(titlePos);
+        this.titleLabel.setAnchorPoint(cc.p(0.0, 0.0));
     }
     
     //Make score
@@ -69,5 +65,14 @@ class GameLayout extends ccui.RelativeBox{
         this.clock.setString(newTime.toFixed(2).toString());
     }
     
-
+    //TimeOut function
+    timeOut(){
+        this.getParent().gameOver();
+    }
+    
+    //Lament the fact that I cant sex anymore
+    //Why???? I hate this stupid corona virus! I can't get my weekly dose of serotonin from my GF anymore! 
+    //I needed that shit to live! This is so unfair! I curl up in a ball at night crying over the fact that
+    //my GF is also likely feeling as alone (physically) as I am; honestly that makes me more sad than my own
+    //loneliness. Ugh, I just want this stupid quarantine to be over faster :(
 }

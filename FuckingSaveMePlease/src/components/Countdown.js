@@ -2,7 +2,7 @@ class Countdown extends cc.Component{
     constructor(clock){
         super();
         this.seconds = 0;
-        this.startTime = 7200;
+        this.startTime = 120;
         this.time = clock;
         this.timeStart  = false;
         this.timeStop = false;
@@ -13,6 +13,12 @@ class Countdown extends cc.Component{
             this.seconds = this.startTime / 60;
             this.getOwner().setTime(this.seconds);
             this.startTime = this.startTime - 1;
+        }
+        
+        if(this.startTime <= 0){
+            console.log("Time is out");
+            this.getOwner().timeOut();
+            this.timeStart = false;
         }
     }
     

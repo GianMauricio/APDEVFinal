@@ -261,27 +261,28 @@ class Grid extends ccui.Layout{
         //If there are matches in any orientation...
         if(upMatches + downMatches - 1 > 2){
             //Schedule the tiles in those directions for replacement
-            for(var i = TileY; i < upMatches; i++){
-                console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement");
-                this.Tiles[i][TileX].match();
+            for(var i = 0; i < upMatches; i++){
+                console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement up matches");
+                this.Tiles[TileY ][TileX + i].match();
             }
-            
-            for(var i = downMatches; i > 0; i--){
-                console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement");
-                this.Tiles[i][TileX].match();
+
+            for(var i = 0; i < downMatches; i++){
+                console.log (i + " down");
+                console.log("Scheduling tile at: " + i + ", " + TileX + " for replacement down matches");
+                this.Tiles[TileY ][TileX - i].match();
             }
         }
-        
+
         if(leftMatches + rightMatches - 1 > 2){
             //Schedule the tiles in those directions for replacement
-            for(var i = TileX; i < rightMatches - 1; i++){
-                console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement");
-                this.Tiles[TileY][i].match();
+            for(var i = 0; i < rightMatches; i++){
+                console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement right matches");
+                this.Tiles[TileY + i][TileX].match();
             }
-            
-            for(var i = leftMatches - 1; i > 0; i--){
-                console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement");
-                this.Tiles[TileY][i].match();
+
+            for(var i = 0; i < leftMatches; i++){
+                console.log("Scheduling tile at: " + TileY + ", " + i + " for replacement left matches");
+                this.Tiles[TileY- i][TileX ].match();
             }
         }
     }
